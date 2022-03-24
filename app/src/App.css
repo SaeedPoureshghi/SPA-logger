@@ -1,0 +1,128 @@
+.App {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding:20px 0;
+}
+
+.form .message {
+  min-width: 100%;
+  
+}
+.fadein {
+ opacity:0;
+ transition: opacity 1s;
+}
+
+.fadeout{
+ opacity: 1;
+ transition: opacity 1s;
+
+}
+.form .message p {
+  text-align: center;
+}
+
+.form input {
+  line-height: 24px;
+  border:1px solid #e1e1e1;
+  margin:0 10px;
+  padding:5px;
+  border-radius: 5px;
+}
+.form input[type="submit"] {
+  padding:5px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.datas {
+  display: flex;
+  padding:0 40px;
+  
+}
+.green {
+  background-color: rgba(150, 253, 150, 0.815);
+}
+.red {
+  background-color: rgb(255, 160, 160);
+}
+
+.datas table {
+  width: 100%;
+}
+.datas table tr td {
+  padding: 5px 0;
+}
+.datas table thead tr td {
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+.datas table  tr td button{
+  padding:5px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.datas table tbody tr:nth-child(odd){
+  background-color: #e1e1e1;
+}
+.datas table tbody tr td:nth-child(2) 
+{
+  width:50%;
+  padding: 0 5px;
+
+}
+.datas table tr td:not(:nth-child(2)) 
+{
+  text-align: center;
+}
+.datas table tr td:last-child {
+  background-color: white;
+  text-align: center;
+}
+
+@media screen and (max-width : 1199px) {
+  
+  .form {
+   display: block;
+   padding:0 20px;
+  }
+  .form  input {
+    display: block;
+    width: 100%;
+    margin:10px 0;
+    
+  }
+
+  .form form [type="submit"] {
+    border-radius: 1px;
+    padding:10px 5px;
+  }
+
+  .datas table thead tr td:not(:nth-child(2)) {
+    min-width: 200px;
+  }
+
+  .datas table thead tr td:nth-child(1){
+    min-width: 50px;
+  }
+  .datas table thead tr td:nth-child(2){
+    min-width: 300px;
+  }
+
+  .datas {
+    display: block;
+    overflow: auto;
+    
+  }
+ 
+
+
+}
