@@ -5,13 +5,21 @@ import axios from 'axios';
 
 const App = () => {
 
+  // When a new data saved refresh the table
   const [refresh, setRefresh] = useState(false);
+  
+  // show returned message from API
   const [message, setmessage] = useState('');
   const [showmessage, setshowmessage] = useState(false);
   const [fetchResult, setfetchResult] = useState(null);
+  
+  // Hook to get Logs.
   const { logs } = useLogs(refresh);
 
-
+  /**
+   * call api to save a log
+   * @param {*} e  
+   */
   const saveLog = (e) => {
     e.preventDefault()
     axios.post('/api/v1/logs', {
@@ -31,6 +39,11 @@ const App = () => {
       })
     e.target.reset();
   }
+
+  /**
+   * Call api to remove a log
+   * @param {*} id of desired log
+   */
 
   const removeLog = (id) => {
     axios.post('/api/v1/logs/remove', {

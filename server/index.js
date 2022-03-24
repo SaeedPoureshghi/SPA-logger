@@ -9,10 +9,15 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 8080;
 
+
 app.listen(PORT, (req, res) => {
   console.log(`server run on port ${PORT}`);
 });
 
+
+/**
+ * Route to get list of logs
+ */
 app.get("/api/v1/logs", (req, res) => {
   logsList((err, rows) => {
     res.json({
@@ -21,6 +26,10 @@ app.get("/api/v1/logs", (req, res) => {
   });
 });
 
+
+/**
+ * Route to insert log to db
+ */
 app.post("/api/v1/logs", (req, res, next) => {
   var errors = [];
 
@@ -56,6 +65,9 @@ app.post("/api/v1/logs", (req, res, next) => {
   });
 });
 
+/**
+ * Route to remove a log from db
+ */
 app.post("/api/v1/logs/remove", (req, res, next) => {
   var error = [];
   if (!req.body.id) {

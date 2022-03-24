@@ -2,6 +2,12 @@ const sqlite3 = require("sqlite3");
 
 const DB_PATH = "./logs.db";
 
+
+/**
+ * Initialize DB
+ * @param  {string} DB_PATH path to the db file!
+ * 
+ */
 const db = new sqlite3.Database(DB_PATH, (err) => {
   if (err) {
     console.log(err.message);
@@ -29,8 +35,13 @@ const db = new sqlite3.Database(DB_PATH, (err) => {
   }
 });
 
+
+/**
+ * get list of logs in db
+ * @param  {call back function} callback 
+ */
 const logsList = async (callback) => {
-  await db.all("SELECT * from tbl_logs", (err, rows) => {
+  await db.all("SELECT * from tbl_logs ORDER BY log_starttime", (err, rows) => {
     if (err) {
       callback(err.message, null);
     } else {
@@ -39,6 +50,15 @@ const logsList = async (callback) => {
   });
 };
 
+
+
+/**
+ * Insert new Log to db
+ * @param  {string} description
+ * @param  {string} starttime
+ * @param  {string} endtime
+ * @param  {call back function} callback
+ */
 const logsInsert = async (description, starttime, endtime, callback) => {
   let stmt = await db.prepare(
     "INSERT INTO tbl_logs (log_description,log_starttime,log_endtime) VALUES (@log_description,@log_starttime,@log_endtime)"
@@ -59,6 +79,12 @@ const logsInsert = async (description, starttime, endtime, callback) => {
   );
 };
 
+
+/**
+ * This function Delete logs with id from db.
+ * @param  {string} id  
+ * @param  {function} callback
+ */
 const logsDelete = async (id, callback) => {
   let stmt = await db.prepare("DELETE FROM tbl_logs where id=@id");
   await stmt.run(

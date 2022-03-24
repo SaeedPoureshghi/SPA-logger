@@ -1,6 +1,12 @@
 const axios = require('axios');
 const { useEffect, useState } = require("react")
 
+/**
+ * This hook get logs from api
+ * @param {bool} refresh 
+ * @returns logs
+ */
+
 export const useLogs = (refresh) => {
 
     const [logs, setLogs] = useState([]);
